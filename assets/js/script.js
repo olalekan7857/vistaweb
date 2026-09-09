@@ -102,16 +102,59 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-// Scroll to Top Button
+// Scroll to Top Button with circular scroll progress
 const scrollToTopBtn = document.querySelector('.scroll-to-top');
+const progressCircle = document.querySelector('.progress-ring__circle');
+let circumference = 0;
 
-window.addEventListener('scroll', function() {
-  if (window.scrollY > window.innerHeight) {
-    scrollToTopBtn.classList.add('visible');
-  } else {
-    scrollToTopBtn.classList.remove('visible');
+if (progressCircle) {
+  const radius = progressCircle.r.baseVal.value;
+  circumference = 2 * Math.PI * radius;
+  progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
+  progressCircle.style.strokeDashoffset = circumference;
+
+  function setProgress(percent) {
+    const offset = circumference - (percent * circumference);
+    progressCircle.style.strokeDashoffset = offset;
   }
-});
+
+  function updateScrollProgress() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrollPercent = docHeight > 0 ? scrollTop / docHeight : 0;
+    setProgress(scrollPercent);
+  }
+
+  // Update on scroll (throttled via requestAnimationFrame for smoothness)
+  let ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        // visibility toggle
+        if (window.scrollY > window.innerHeight) {
+          scrollToTopBtn.classList.add('visible');
+        } else {
+          scrollToTopBtn.classList.remove('visible');
+        }
+        updateScrollProgress();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // Initialize on load
+  updateScrollProgress();
+  window.addEventListener('resize', updateScrollProgress);
+} else {
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > window.innerHeight) {
+      scrollToTopBtn.classList.add('visible');
+    } else {
+      scrollToTopBtn.classList.remove('visible');
+    }
+  });
+}
 
 scrollToTopBtn.addEventListener('click', function() {
   window.scrollTo({
@@ -126,6 +169,73 @@ scrollToTopBtn.addEventListener('click', function() {
   }, 300);
 });
 
+
+// Contact Form - AJAX/Fetch to Formspree (no redirect, stays on portfolio)
+(function() {
+  const contactForm = document.getElementById('contact-form');
+  if (!contactForm) return;
+  const submitBtn = contactForm.querySelector('button[type="submit"]');
+  const formStatus = document.getElementById('form-status');
+  if (!submitBtn || !formStatus) return;
+  const originalBtnText = submitBtn.textContent;
+
+  contactForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    // Allow native HTML5 validation to show; if invalid, stop
+    if (!contactForm.checkValidity()) {
+      contactForm.reportValidity();
+      return;
+    }
+
+    // Prevent double submission
+    if (submitBtn.disabled) return;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    submitBtn.setAttribute('aria-busy', 'true');
+    formStatus.textContent = '';
+    formStatus.className = 'form-status';
+    formStatus.removeAttribute('role');
+
+    const formData = new FormData(contactForm);
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        formStatus.textContent = 'Thank you! Your message has been sent successfully.';
+        formStatus.className = 'form-status form-status--success visible';
+        formStatus.setAttribute('role', 'status');
+        contactForm.reset();
+      } else {
+        let errorMessage = 'Something went wrong. Please try again.';
+        try {
+          const data = await response.json();
+          if (data && data.errors && Array.isArray(data.errors) && data.errors.length) {
+            errorMessage = data.errors.map(function(err) { return err.message; }).join(', ');
+          } else if (data && data.error) {
+            errorMessage = data.error;
+          }
+        } catch (_) {}
+        formStatus.textContent = errorMessage;
+        formStatus.className = 'form-status form-status--error visible';
+        formStatus.setAttribute('role', 'alert');
+      }
+    } catch (err) {
+      formStatus.textContent = 'Something went wrong. Please check your connection and try again.';
+      formStatus.className = 'form-status form-status--error visible';
+      formStatus.setAttribute('role', 'alert');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalBtnText;
+      submitBtn.removeAttribute('aria-busy');
+    }
+  });
+})();
 
 // Section Observer for Active Nav Links
 const sections = document.querySelectorAll('section');

@@ -324,7 +324,7 @@
 
             <div class="contact-form animate-card from-bottom">
                 <h2 >Get in touch</h2>
-                <form method="POST" action="#">
+                <form id="contact-form" method="post" action="https://formspree.io/f/meaqpbnv">
                     <div class="form-group">
                         <input type="text" name="name" class="input-field" placeholder="Your name" required>
                     </div>
@@ -341,6 +341,7 @@
                         <textarea name="message" class="input-field textarea-field" placeholder="Your message" rows="5" required></textarea>
                     </div>
                     <div><button type="submit" class="btn btn-full-width">Send Message</button></div>
+                    <p id="form-status" class="form-status" aria-live="polite" role="status"></p>
                 </form>
             </div>
         </div>
@@ -362,7 +363,11 @@
 
     <!-- Scroll to Top Button -->
     <button class="scroll-to-top" aria-label="Scroll to top">
-    <i class="fas fa-chevron-up"></i>
+        <svg class="progress-ring" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true">
+            <circle class="progress-ring__bg" cx="25" cy="25" r="22" />
+            <circle class="progress-ring__circle" cx="25" cy="25" r="22" />
+        </svg>
+        <i class="fas fa-arrow-up"></i>
     </button>
 
     

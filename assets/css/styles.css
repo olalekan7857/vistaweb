@@ -134,7 +134,7 @@ section {
 .btn {
     display: inline-block;
     padding: var(--spacing-xs) var(--spacing-md);
-    border-radius: var(--radius-sm);
+    border-radius: 0;
     font-weight: 700;
     text-align: center;
     cursor: pointer;
@@ -180,7 +180,7 @@ section {
     font-weight: bold;
     padding: var(--spacing-sm) 0;
     margin-top: var(--spacing-md);
-    border-radius: var(--radius-xlg);
+    border-radius: 0;
     transition: var(--transition-slow);
 }
 
@@ -427,7 +427,7 @@ section {
 
 .service-card {
     background-color: var(--white);
-    border-radius: var(--radius-md);
+    border-radius: 0;
     box-shadow: var(--shadow-md);
     display: flex;
     text-align: left;
@@ -512,7 +512,7 @@ section {
 .skill-card {
     background-color: var(--bg-color);
     padding: var(--spacing-lg);
-    border-radius: var(--radius-md);
+    border-radius: 0;
     text-align: center;
     transition: var(--transition-normal);
 }
@@ -595,7 +595,7 @@ section {
 
 .portfolio-item {
     background-color: var(--white);
-    border-radius: var(--radius-lg);
+    border-radius: 0;
     overflow: hidden;
     padding: var(--spacing-sm);
     box-shadow: var(--shadow-md);
@@ -617,7 +617,7 @@ section {
 .portfolio-image {
     height: 300px;
     overflow: hidden;
-    border-radius: inherit;
+    border-radius: 0;
 }
 
 .portfolio-content {
@@ -629,7 +629,7 @@ section {
 
 .portfolio-content a {
     width: fit-content;
-    border-radius: 33px;
+    border-radius: 0;
 }
 
 .portfolio-content h2 {
@@ -658,7 +658,7 @@ section {
 
 .portfolio-btn {
     background-color: var(--secondary-color);
-    border-radius: 23px;
+    border-radius: 0;
     color: var(--white);
     padding: var(--spacing-xs) var(--spacing-sm);
     border: 2px solid var(--secondary-color);
@@ -730,7 +730,7 @@ section {
     flex-direction: column;
     align-items: center;
     padding: var(--spacing-lg);
-    border-radius: var(--radius-md);
+    border-radius: 0;
     transition: var(--transition-normal);
     position: relative;
 }
@@ -872,6 +872,50 @@ section {
     min-height: 120px;
 }
 
+/* Contact form AJAX status - reuses portfolio variables/typography */
+.form-status {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-family: 'Poppins', sans-serif;
+    font-size: var(--fs-6);
+    line-height: 1.5;
+    border-radius: 0;
+    border-left: 3px solid transparent;
+    box-shadow: var(--shadow-sm);
+    display: none;
+    text-align: left;
+}
+
+.form-status.visible {
+    display: block;
+}
+
+.form-status--success {
+    background-color: hsla(142, 60%, 96%, 1);
+    color: hsl(142, 45%, 20%);
+    border-left-color: hsl(142, 65%, 35%);
+    border-top: 1px solid hsla(142, 40%, 85%, 1);
+    border-right: 1px solid hsla(142, 40%, 85%, 1);
+    border-bottom: 1px solid hsla(142, 40%, 85%, 1);
+}
+
+.form-status--error {
+    background-color: hsla(0, 80%, 97%, 1);
+    color: hsl(0, 60%, 25%);
+    border-left-color: hsl(0, 70%, 50%);
+    border-top: 1px solid hsla(0, 60%, 90%, 1);
+    border-right: 1px solid hsla(0, 60%, 90%, 1);
+    border-bottom: 1px solid hsla(0, 60%, 90%, 1);
+}
+
+.btn:disabled,
+.btn[disabled],
+.btn-full-width:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
 /* Footer */
 .footer {
     background-color: var(--secondary-color);
@@ -961,6 +1005,8 @@ section {
   opacity: 0;
   transition: var(--transition-slow);
   transform: translateY(20px);
+  padding: 0;
+  overflow: visible;
 }
 
 .scroll-to-top.visible {
@@ -977,10 +1023,39 @@ section {
 
 .scroll-to-top i {
   transition: var(--transition-fast);
+  position: relative;
+  z-index: 2;
 }
 
 .scroll-to-top:hover i {
   transform: translateY(-3px);
+}
+
+/* Circular progress ring around scroll-to-top */
+.scroll-to-top .progress-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+.scroll-to-top .progress-ring__bg {
+  fill: transparent;
+  stroke: rgba(255, 255, 255, 0.2);
+  stroke-width: 3;
+}
+
+.scroll-to-top .progress-ring__circle {
+  fill: transparent;
+  stroke: var(--white);
+  stroke-width: 3;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.15s linear;
+  /* dasharray/dashoffset set via JS */
 }
 
 .scroll-to-top.clicked {
