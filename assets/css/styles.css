@@ -318,7 +318,12 @@ section {
 
     a:hover {
         border: 2px solid var(--white);
+        color: var(--white);
     }
+}
+
+.hero-buttons .btn-primary:hover {
+    color: var(--white);
 }
 
 /* About Section */
@@ -685,7 +690,7 @@ section {
     font-family: 'Playfair Display', serif;
     z-index: 1;
     overflow: hidden;
-    border: 2px solid var(--primary-color);
+    border: none;
     transition: var(--transition-slow);
 }
 
@@ -700,6 +705,7 @@ section {
 
 .visit-btn:hover {
     transform: translateX(5px);
+    border: none;
 }
 
 .visit-btn:hover .arrow-first{
