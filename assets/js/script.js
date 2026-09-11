@@ -4,21 +4,45 @@ document.addEventListener('DOMContentLoaded', function() {
     const navList = document.querySelector('.nav-list');
     const bar = document.querySelector('.bar');
 
-    //Box animation
+    //Box animation - keep declared from-left / from-right / from-bottom, fix reload-mid-page hang
     const boxes = document.querySelectorAll('.animate-card');
 
-    const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-        entry.target.classList.add('animate');
-        observer.unobserve(entry.target); // Animate only once
-        }
-    });
-    }, {
-    threshold: 0.3
-    });
+    if (boxes.length) {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
 
-    boxes.forEach(box => observer.observe(box));
+        boxes.forEach(box => {
+            const rect = box.getBoundingClientRect();
+            const isVisibleNow = rect.top < window.innerHeight * 0.85 && rect.bottom > 0;
+            if (isVisibleNow) {
+                // Reloaded while this card is already in viewport -> animate immediately
+                // rAF lets browser paint initial translateX/Y first so transition still plays from declared direction
+                requestAnimationFrame(() => box.classList.add('animate'));
+            } else {
+                // Off-screen (above or below) -> observe normally, will animate freely from its from-* direction when scrolled into view
+                observer.observe(box);
+            }
+        });
+
+        // Safety net for live-reload / bfcache after layout stabilizes
+        window.addEventListener('load', () => {
+            boxes.forEach(box => {
+                if (!box.classList.contains('animate') && box.getBoundingClientRect().top < window.innerHeight * 0.9 && box.getBoundingClientRect().bottom > 0) {
+                    requestAnimationFrame(() => box.classList.add('animate'));
+                    observer.unobserve(box);
+                }
+            });
+        }, { once: true });
+    }
     
     menuToggle.addEventListener('click', function() {
         this.classList.toggle('active');
