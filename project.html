@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details | VistaWeb</title>
+    <meta name="description" id="meta-description" content="Project case study from the VistaWeb portfolio of Ademola Ibrahim, Full-Stack Web Developer.">
+    <meta name="author" content="Ademola Ibrahim">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" id="canonical-link" href="https://vistaweb.com.ng/project.html">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" id="og-url" content="https://vistaweb.com.ng/project.html">
+    <meta property="og:title" id="og-title" content="Project Details | VistaWeb">
+    <meta property="og:description" id="og-description" content="Project case study from the VistaWeb portfolio of Ademola Ibrahim, Full-Stack Web Developer.">
+    <meta property="og:image" id="og-image" content="https://vistaweb.com.ng/assets/images/My_image_black_bg.png">
+    <meta property="og:site_name" content="VistaWeb">
+    <meta property="og:locale" content="en_US">
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" id="twitter-title" content="Project Details | VistaWeb">
+    <meta name="twitter:description" id="twitter-description" content="Project case study from the VistaWeb portfolio of Ademola Ibrahim, Full-Stack Web Developer.">
+    <meta name="twitter:image" id="twitter-image" content="https://vistaweb.com.ng/assets/images/My_image_black_bg.png">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
+    <link rel="icon" href="assets/images/favicon.png" type="image/png">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/project.css">
+</head>
+<body class="project-page">
+    <!-- Navigation (same VistaWeb header; links point back to index.html sections) -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo-light.png" alt="VistaWeb logo">
+            </a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#about" class="nav-link">About</a></li>
+                <li><a href="index.html#services" class="nav-link">Services</a></li>
+                <li><a href="index.html#resume" class="nav-link">Resume</a></li>
+                <li><a href="index.html#portfolio" class="nav-link">Portfolio</a></li>
+                <li><a href="index.html#prices" class="nav-link">Prices</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="project-main">
+        <div class="container">
+
+            <a href="index.html#portfolio" class="p-back"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+
+            <!-- Populated by assets/js/projects.js data (see inline script below) -->
+            <article id="project-article" aria-label="Project case study">
+
+                <!-- Hero -->
+                <header class="p-hero">
+                    <span class="project-badge" id="p-badge"></span>
+                    <h1 class="p-title" id="p-title"></h1>
+                    <p class="p-tagline" id="p-tagline"></p>
+                    <div class="p-cta-row" id="p-ctas"></div>
+                </header>
+
+                <!-- Featured screenshot -->
+                <figure class="p-cover" id="p-cover-wrap">
+                    <img id="p-cover-img" src="assets/images/vistaweb_hero.png" alt="Project preview">
+                </figure>
+
+                <!-- Main content + sidebar -->
+                <div class="p-layout">
+                    <div class="p-main-col">
+                        <section class="p-block" id="p-overview-section" aria-label="Project overview">
+                            <h2>Project Overview</h2>
+                            <div id="p-overview"></div>
+                        </section>
+
+                        <section class="p-block" id="p-features-section" aria-label="Key features">
+                            <h2>Key Features &amp; Capabilities</h2>
+                            <div class="p-features-card">
+                                <ul class="project-features" id="p-features-list"></ul>
+                            </div>
+                        </section>
+
+                        <section class="p-block" id="p-tech-section" aria-label="Technical implementation">
+                            <h2>Technical Implementation</h2>
+                            <ul class="p-tech-list" id="p-tech-list"></ul>
+                        </section>
+                    </div>
+
+                    <aside class="p-side" aria-label="Project details">
+                        <div class="p-meta-card">
+                            <h2>Project Details</h2>
+                            <div id="p-meta-rows"></div>
+                        </div>
+                    </aside>
+                </div>
+
+                <!-- Screenshot gallery (only when extra images exist) -->
+                <section class="p-block" id="p-gallery-section" aria-label="Screenshot gallery" hidden>
+                    <h2>Gallery</h2>
+                    <div class="p-gallery-grid" id="p-gallery-grid"></div>
+                </section>
+
+                <!-- Outcome -->
+                <section class="p-outcome" id="p-outcome-section" aria-label="Project outcome">
+                    <h2>Outcome</h2>
+                    <p id="p-outcome-text"></p>
+                </section>
+
+            </article>
+
+            <!-- Shown when the ?project= slug is missing or unknown -->
+            <section class="p-notfound" id="not-found" aria-label="Project not found" hidden>
+                <h1>Project Not Found</h1>
+                <p>Sorry, the project you are looking for does not exist or is no longer available. Please check the link or browse the full portfolio instead.</p>
+                <a href="index.html#portfolio" class="btn btn-view btn-card"><i class="fas fa-arrow-right arrow-first"></i> Back to Projects <i class="fas fa-arrow-right arrow-last"></i></a>
+            </section>
+
+            <noscript>
+                <div class="p-notfound">
+                    <h1>JavaScript Required</h1>
+                    <p>This case-study page loads its content dynamically. Please enable JavaScript, or return to the portfolio.</p>
+                    <a href="index.html#portfolio" class="btn btn-view">Back to Projects</a>
+                </div>
+            </noscript>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>©2026. All right reserved by vistaweb</p>
+            <div class="social-links animate-card from-right">
+                <a href="https://github.com/olalekan7857?tab=repositories"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/ademola-ibrahim-5969a2378"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/vistaweb__"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/+2349017779308"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" aria-label="Scroll to top">
+        <svg class="progress-ring" width="50" height="50" viewBox="0 0 50 50" aria-hidden="true">
+            <circle class="progress-ring__bg" cx="25" cy="25" r="22" />
+            <circle class="progress-ring__circle" cx="25" cy="25" r="22" />
+        </svg>
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/projects.js"></script>
+    <script>
+    /* Project-detail renderer: reads ?project=<slug> and fills the
+       template above from PROJECTS in assets/js/projects.js */
+    (function () {
+        'use strict';
+
+        var SITE_URL = 'https://vistaweb.com.ng';
+        var data = (typeof PROJECTS !== 'undefined' && PROJECTS) ? PROJECTS : {};
+
+        var params = new URLSearchParams(window.location.search);
+        var slug = (params.get('project') || '').toLowerCase().trim();
+        var project = data[slug];
+
+        function $(id) { return document.getElementById(id); }
+
+        function setMeta(id, attr, value) {
+            var el = $(id);
+            if (el && value) el.setAttribute(attr, value);
+        }
+
+        function glyphSpan(cls) {
+            var s = document.createElement('span');
+            s.className = cls + ' arrow-glyph';
+            s.textContent = '\u2197'; /* diagonal arrow, same as homepage */
+            s.setAttribute('aria-hidden', 'true');
+            return s;
+        }
+
+        /* ---------- Not-found state ---------- */
+        if (!project) {
+            document.title = 'Project Not Found | VistaWeb';
+            var article = $('project-article');
+            if (article) article.setAttribute('hidden', '');
+            var missing = $('not-found');
+            if (missing) missing.removeAttribute('hidden');
+            return;
+        }
+
+        var pageUrl = SITE_URL + '/project.html?project=' + encodeURIComponent(slug);
+        var coverSrc = project.images && project.images.cover ? project.images.cover : '';
+        var coverAlt = (project.images && project.images.alt) || (project.title + ' preview');
+        var absoluteCover = coverSrc ? SITE_URL + '/' + coverSrc : '';
+
+        /* ---------- SEO / social metadata ---------- */
+        document.title = project.title + ' | VistaWeb Portfolio';
+        setMeta('meta-description', 'content', project.tagline);
+        setMeta('canonical-link', 'href', pageUrl);
+        setMeta('og-url', 'content', pageUrl);
+        setMeta('og-title', 'content', project.title + ' | VistaWeb Portfolio');
+        setMeta('og-description', 'content', project.tagline);
+        setMeta('og-image', 'content', absoluteCover);
+        setMeta('twitter-title', 'content', project.title + ' | VistaWeb Portfolio');
+        setMeta('twitter-description', 'content', project.tagline);
+        setMeta('twitter-image', 'content', absoluteCover);
+
+        /* ---------- Hero ---------- */
+        $('p-badge').textContent = project.category || '';
+        $('p-title').textContent = project.title;
+        $('p-tagline').textContent = project.tagline || '';
+
+        var ctas = $('p-ctas');
+
+        function addCtaButton(href, label, primary) {
+            var a = document.createElement('a');
+            a.className = primary ? 'btn btn-view' : 'btn btn-visit';
+            a.setAttribute('href', href);
+            a.setAttribute('target', '_blank');
+            a.setAttribute('rel', 'noopener noreferrer');
+            a.appendChild(glyphSpan('arrow-first'));
+            a.appendChild(document.createTextNode(' ' + label + ' '));
+            a.appendChild(glyphSpan('arrow-last'));
+            ctas.appendChild(a);
+        }
+
+        /* The Visit button appears only for live projects. Offline projects
+           show no button at all. It is also hidden when the matching card
+           on index.html flags its Visit link with the `unavailable` class,
+           so both pages stay in sync from that one class. */
+        function renderCtas(indexUnavailable) {
+            if (project.liveUrl && !indexUnavailable) {
+                addCtaButton(project.liveUrl, 'Visit Live Website', true);
+            }
+            if (project.sourceUrl) {
+                addCtaButton(project.sourceUrl, 'View Source', false);
+            }
+            if (!ctas.children.length) ctas.setAttribute('hidden', '');
+        }
+
+        /* Look up the `unavailable` flag on this project's homepage card.
+           Fails silently (e.g. file:// preview) and falls back to the
+           liveUrl data alone. */
+        (function syncWithHomepage() {
+            function fallback() { renderCtas(false); }
+            if (!('fetch' in window)) { fallback(); return; }
+            fetch('index.html').then(function (r) {
+                return r.ok ? r.text() : '';
+            }).then(function (html) {
+                if (!html) { renderCtas(false); return; }
+                var at = html.indexOf('project.html?project=' + slug);
+                var flagged = at !== -1 && html.substr(at, 800).indexOf('unavailable') !== -1;
+                renderCtas(flagged);
+            }).catch(fallback);
+        })();
+
+        /* ---------- Cover ---------- */
+        var coverImg = $('p-cover-img');
+        if (coverSrc) {
+            coverImg.setAttribute('src', coverSrc);
+            coverImg.setAttribute('alt', coverAlt);
+        } else {
+            var coverWrap = $('p-cover-wrap');
+            if (coverWrap) coverWrap.setAttribute('hidden', '');
+        }
+
+        /* ---------- Overview ---------- */
+        var overviewBox = $('p-overview');
+        (project.overview || []).forEach(function (para) {
+            if (!para) return;
+            var p = document.createElement('p');
+            p.textContent = para;
+            overviewBox.appendChild(p);
+        });
+
+        /* ---------- Features ---------- */
+        if (project.features && project.features.length) {
+            var fl = $('p-features-list');
+            project.features.forEach(function (f) {
+                if (!f) return;
+                var li = document.createElement('li');
+                li.textContent = f;
+                fl.appendChild(li);
+            });
+        } else {
+            $('p-features-section').setAttribute('hidden', '');
+        }
+
+        /* ---------- Technical implementation ---------- */
+        if (project.technical && project.technical.length) {
+            var tl = $('p-tech-list');
+            project.technical.forEach(function (t) {
+                if (!t) return;
+                var li = document.createElement('li');
+                li.textContent = t;
+                tl.appendChild(li);
+            });
+        } else {
+            $('p-tech-section').setAttribute('hidden', '');
+        }
+
+        /* ---------- Sidebar ---------- */
+        var rows = $('p-meta-rows');
+
+        function addRow(label, valueText, valueNode) {
+            var row = document.createElement('div');
+            row.className = 'p-meta-row';
+            var lab = document.createElement('span');
+            lab.className = 'p-meta-label';
+            lab.textContent = label;
+            row.appendChild(lab);
+            if (valueNode) {
+                row.appendChild(valueNode);
+            } else {
+                var val = document.createElement('span');
+                val.className = 'p-meta-value';
+                val.textContent = valueText;
+                row.appendChild(val);
+            }
+            rows.appendChild(row);
+        }
+
+        if (project.category) addRow('Category', project.category);
+        if (project.role) addRow('My Role', project.role);
+        if (project.technologies && project.technologies.length) {
+            var chips = document.createElement('div');
+            chips.className = 'p-chips';
+            project.technologies.forEach(function (tech) {
+                if (!tech) return;
+                var c = document.createElement('span');
+                c.className = 'p-chip';
+                c.textContent = tech;
+                chips.appendChild(c);
+            });
+            addRow('Tech Stack', '', chips);
+        }
+        if (project.timeline) addRow('Timeline', project.timeline);
+
+        /* ---------- Gallery (extra images only; cover is already above) ---------- */
+        var gallery = (project.images && project.images.gallery) || [];
+        if (gallery.length) {
+            var grid = $('p-gallery-grid');
+            gallery.forEach(function (src, i) {
+                if (!src || src === coverSrc) return;
+                var fig = document.createElement('figure');
+                fig.className = 'p-shot';
+                var img = document.createElement('img');
+                img.setAttribute('src', src);
+                img.setAttribute('alt', project.title + ' screenshot ' + (i + 1));
+                img.setAttribute('loading', 'lazy');
+                fig.appendChild(img);
+                grid.appendChild(fig);
+            });
+            if (grid.children.length) {
+                $('p-gallery-section').removeAttribute('hidden');
+            }
+        }
+
+        /* ---------- Outcome ---------- */
+        if (project.outcome) {
+            $('p-outcome-text').textContent = project.outcome;
+        } else {
+            $('p-outcome-section').setAttribute('hidden', '');
+        }
+    })();
+    </script>
+</body>
+</html>
