@@ -108,7 +108,7 @@ const PROJECTS = {
     outcome: "Contributed to backend architecture, transaction logic, and PDF/Excel statement generation.",
     timeline: "",
     images: {
-      cover: "assets/images/pillaven_cashbook-hero.jpg",
+      cover: "assets/images/pillaven_cashbook-screenshot.png",
       gallery: [],
       alt: "Pillaven Cashbook expense tracking platform preview"
     },
