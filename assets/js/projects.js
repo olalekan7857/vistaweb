@@ -150,6 +150,45 @@ const PROJECTS = {
     sourceUrl: null
   },
 
+  "otoosin-farms": {
+    title: "O’Toosin Farms",
+    category: "E-commerce / Farm Marketplace",
+    tagline: "A full-stack farm marketplace for browsing and ordering meats, fish, live animals, eggs, vegetables and fruits.",
+    overview: [
+      "O’Toosin Farms is a full-stack farm marketplace built for a real client, where customers can browse products such as meats, fish, live animals, eggs, vegetables and fruits, view product details, add products to their cart, and proceed through checkout and order placement.",
+      "The platform also includes a custom administrative dashboard for managing products, categories, inventory, orders and store settings. I handled frontend development, Django backend development, e-commerce functionality, the custom dashboard, database integration, responsive design, image optimization and production deployment."
+    ],
+    role: "Full-Stack Developer",
+    technologies: ["HTML", "CSS", "JavaScript", "Python", "Django", "PostgreSQL"],
+    features: [
+      "Product catalogue covering meats, fish, live animals, eggs, vegetables and fruits",
+      "Product detail pages with cart and checkout flow",
+      "Order placement with online payment integration currently in Test Mode",
+      "Custom admin dashboard for products, categories, inventory and orders",
+      "Store settings management from the dashboard",
+      "Responsive storefront with optimized product images"
+    ],
+    technical: [
+      "Built the responsive storefront with HTML, CSS and JavaScript",
+      "Developed the Django backend and integrated a PostgreSQL database",
+      "Implemented cart, checkout and order placement functionality",
+      "Built a custom dashboard for managing products, categories, inventory, orders and store settings",
+      "Optimized product images and responsive layouts for performance",
+      "Deployed the application to production"
+    ],
+    outcome: "Delivered a production farm marketplace with a complete storefront and a custom admin dashboard. Payment integration is currently being tested in Test Mode.",
+    timeline: "",
+    images: {
+      cover: "assets/images/otoosin_hero.png",
+      gallery: [],
+      alt: "O’Toosin Farms farm marketplace homepage preview"
+    },
+    liveUrl: "https://otoosinfarms.com.ng",
+    sourceUrl: null
+  }
+
+  /* TEMPORARILY HIDDEN — DevBlog (restore by removing this comment wrapper)
+  ,
   "devblog": {
     title: "Devblog",
     category: "Blog Platform",
@@ -183,5 +222,6 @@ const PROJECTS = {
     liveUrl: null,
     sourceUrl: null
   }
+  END TEMPORARILY HIDDEN — DevBlog */
 
 };
